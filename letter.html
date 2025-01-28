@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SLD Certificate</title>
+    <link rel="stylesheet" href="letter.css">
+    
+    <!-- Include jQuery and QR Code Plugin -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.qrcode/1.0/jquery.qrcode.min.js"></script>
+</head>
+<body>
+    <div class="certificate-container">
+        <!-- Header with Names -->
+        <div class="header">
+            <div class="left-header">Kucheria Motors</div>
+            <div class="right-header">Tata Motors</div>
+        </div>  
+        
+        <hr>
+        <div class="after">
+            <p>Authorised Service Station</p>
+        </div>
+        
+        <!-- Main Content with Details and QR Code -->
+        <div class="content">
+            <div class="details">
+                <p><strong>Name:</strong> <span id="name"></span></p>
+                <p><strong>Address:</strong> <span id="address"></span></p>
+                <p><strong>Mobile:</strong> <span id="mobile"></span></p>
+                <p><strong>Email:</strong> <span id="email"></span></p>
+                <p><strong>Vehicle No:</strong> <span id="vehicleNo"></span></p>
+            </div>
+            <div id="qrcode" class="qrcode"></div> <!-- QR Code on the right -->
+        </div>
+        
+        
+        
+        
+        
+        
+        <!-- Certificate Title -->
+        <h2 class="certificate-title">SLD Certificate</h2>
+        
+        <!-- ELU No -->
+        <p class="elu-number">EUC No: <span id="eucNo"></span></p>
+        
+    <p class="certification-paragraph">
+        Certified that the vehicle (Brand name of vehicle <b><span id="vehicleName"></span></b> ), bearing chassis number 
+        <b><span id="chassisNo"></span></b> and engine number <b><span id="engineNo"></span></b> fitted with 
+        the electronic control unit (Speed Limiting Device) of <b>BOSCH</b> (make), which complies with the 
+        provision of Rule 118 of Central Motor Vehicles Rules, 1989. This device conforms to the 
+        standard AIS Certificate Number 152, dated <span id="certificateDate"></span>, issued by 
+        the Testing Agency <b>Kucheria Motors</b>, Nashik. The maximum speed of the vehicle is 
+        electronically managed through the engine management system, set at 80 KMPH as per 
+        customer request, and is tamperproof.
+    </p>
+
+
+        <!-- Footer with Date, Signature, and Address -->
+        <div class="footer">
+            <div class="left-footer">
+                <p><strong>Date:</strong> <span id="date"></span></p>
+            </div>
+            <div class="right-footer">
+                <p><strong>Seal & Signature of</strong><br>Manufacturer/Dealer</p>
+            </div>
+        </div>
+        
+        
+        
+        <hr>
+        
+        <!-- Contact Information at the Bottom -->
+        <div class="contact-info">
+            <p>Kucheria Motors</p>
+            <p>Survey No.356/2, Tavali Phata, Near New Octroi Naka, Makhmaabad Shivar, Panchvati, Nashik - 422003</p>
+            <p>Cell: 982360074/8483035700 | Email: kucheriamotors2019@gmail.com | GST NO.-27AAUFK6049D1ZZ</p>
+        </div>
+    </div>
+
+    <script>
+        // Retrieve form data from sessionStorage
+        const formData = JSON.parse(sessionStorage.getItem("formData"));
+    
+        if (formData) {
+            // Populate the details section
+            document.getElementById("name").textContent = formData.name || "N/A";
+            document.getElementById("address").textContent = formData.address || "N/A";
+            document.getElementById("mobile").textContent = formData.mobile || "N/A";
+            document.getElementById("email").textContent = formData.email || "N/A";
+            document.getElementById("vehicleNo").textContent = formData.vehicleNo || "N/A";
+    
+            // Populate the QR code section
+            const qrData = `Name: ${formData.name}, Address: ${formData.address}, Mobile: ${formData.mobile}, Email: ${formData.email}, Vehicle No: ${formData.vehicleNo}`;
+            $('#qrcode').qrcode({
+                width: 185,
+                height: 185,
+                text: qrData
+            });
+        } else {
+            console.error("No form data found in sessionStorage.");
+        }
+    </script>
+    
+</body>
+</html>
+    
+</body>
+</html>
